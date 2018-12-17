@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: test
+  application:
+    name: eureka
+server:
+  port: 8210
+eureka:
+  server:
+    enableSelfPreservation: false
+    #超时自动踢出
+    evictionIntervalTimerInMs: 60000
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  instance:
+    prefer-ip-address: true
+    hostname: eureka
+
+---
+#开发环境
+spring:
+  profiles: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://172.119.50.74:8211/eureka
+
+---
+#测试环境
+spring:
+  profiles: test
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://172.119.0.29:8211/eureka
